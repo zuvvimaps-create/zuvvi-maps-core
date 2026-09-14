@@ -154,9 +154,10 @@ Status: **FECHADA após o merge autorizado do PR #1 e a contraprova na `main`**
 
 ### ZVM-BASE-01 — Qualidade e CI
 
-Status: **EM REVISÃO — aguardando aprovação e merge do PR**
+Status: **FECHADA após o merge autorizado do PR #2 e a contraprova na `main`**
 
 - Branch: `chore/zvm-base-01-quality-ci`.
+- PR: `#2`.
 - Baseline: 28 erros e 11 avisos de lint.
 - Resultado: lint sem erros e sem avisos.
 - TypeScript: aprovado com `tsc --noEmit`.
