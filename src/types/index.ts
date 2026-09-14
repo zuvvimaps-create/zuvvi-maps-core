@@ -1,5 +1,7 @@
 /** Domain types shared across the app. Vendor neutral by design. */
 
+export * from "./fleet";
+
 export interface LatLng {
   lat: number;
   lng: number;
@@ -11,6 +13,9 @@ export type PlaceCategory =
   | "market"
   | "pharmacy"
   | "fuel"
+  | "health"
+  | "hotel"
+  | "shop"
   | "park"
   | "transit"
   | "culture";
