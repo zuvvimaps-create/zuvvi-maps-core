@@ -1,0 +1,27 @@
+{
+  "name": "Zuvvi Maps",
+  "short_name": "Zuvvi",
+  "description": "Mapas, rotas e navegação premium da Zuvvi.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070A16",
+  "theme_color": "#070A16",
+  "lang": "pt-BR",
+  "categories": ["navigation", "travel", "maps"],
+  "icons": [
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
