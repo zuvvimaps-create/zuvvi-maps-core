@@ -177,9 +177,10 @@ Status: **FECHADA após o merge autorizado do PR #2 e a contraprova na `main`**
 
 ### ZVM-MAP-FIX-01 — Cartografia móvel
 
-Status: **EM EXECUÇÃO**
+Status: **FECHADA após o merge autorizado do PR #3 e a contraprova na `main`**
 
 - Branch: `fix/zvm-map-fix-01-mobile-cartography`.
+- PR: `#3`.
 - Evidência: quatro capturas fornecidas pelo proprietário após o PR #2.
 - Diagnóstico reproduzido: o estilo JSON da CARTO respondeu, mas seu endpoint de TileJSON vetorial expirou; somente o fundo preto foi renderizado.
 - Substituir o padrão temporário por tiles raster diretos, sem dependência de TileJSON, sprites ou fontes externas.
