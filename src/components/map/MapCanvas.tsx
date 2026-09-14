@@ -57,6 +57,8 @@ export function MapCanvas({
         };
         if (map.loaded()) markReady();
         else map.once("load", markReady);
+        // Fallback so markers and UI never wait on a slow tile response.
+        map.once("styledata", () => window.setTimeout(markReady, 400));
       })
       .catch((error) => console.error("Map failed to initialise", error));
 
