@@ -122,7 +122,23 @@ Dados abertos de terceiros só poderão ser usados com licença compatível, atr
 12. Revalidar a `main` antes do merge.
 13. Fazer merge controlado.
 14. Confirmar SHA final e executar smoke test.
-15. Atualizar este documento/logbook e somente então fechar a etapa.
+15. Depois de cada merge, entregar ao proprietário um roteiro simples e completo informando: onde abrir, o que clicar/fazer, quais dados usar quando aplicável e qual resultado deve aparecer.
+16. O proprietário executa ou acompanha o teste pós-merge e informa o resultado.
+17. Atualizar este documento/logbook e somente então fechar a etapa.
+
+### Regra obrigatória de orientação pós-merge
+
+Nenhum merge será comunicado apenas com informações técnicas. A comunicação de fechamento deve sempre conter:
+
+- link exato do ambiente ou tela a abrir;
+- passo a passo do teste em linguagem simples;
+- resultado esperado em cada passo;
+- aviso claro quando a mudança for somente documental e não produzir alteração visual;
+- identificação da branch, commit, PR e SHA final da `main`;
+- pendências ou limitações que ainda não fazem parte da etapa;
+- solicitação de confirmação do proprietário após o teste.
+
+Se o ambiente publicado ainda não estiver disponível ou atualizado, isso deverá ser informado explicitamente; nunca declarar que o teste visual está pronto sem contraprova do deploy.
 
 É proibido reescrever histórico publicado, fazer force push, rebase destrutivo ou amend de commits já enviados, pois o repositório está sincronizado ao Lovable.
 
@@ -130,7 +146,7 @@ Dados abertos de terceiros só poderão ser usados com licença compatível, atr
 
 ### ZVM-BASE-00 — Documento da Verdade
 
-Status: **EM EXECUÇÃO**
+Status: **FECHADA após o merge autorizado do PR #1 e a contraprova na `main`**
 
 - Registrar identidade, baseline, visão, decisões e travas.
 - Alteração documental apenas.
