@@ -42,3 +42,12 @@
 - [ ] `/docs` architecture page: decoupling, self-hosting Valhalla/Nominatim/
       Martin/Planetiler/PostGIS, what is mocked, migration checklist
 - [ ] PWA manifest, icons, meta, favicon from app icon
+
+## Done (this pass)
+- Home screen live at /: MapLibre canvas, POI pins, user marker, header + search overlay, map controls (locate/zoom/layers/recenter/saved), place bottom sheet, route comparison panel, navigation HUD, bottom nav, saved/profile panels.
+- Services: demo + REST providers for places/geocoding/routing, fleet/trip/admin demo providers, registry in src/services/index.ts.
+- PWA manifest, fonts, theme provider, toasts.
+
+## Next
+- Pages: /explore, /saved, /admin, /design (component showcase), /docs.
+- Wire fleet/trip services into a rides flow.
