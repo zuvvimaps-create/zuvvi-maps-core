@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createServicesConfig } from "../src/services/config.ts";
+import { createRasterStyle, mapStyles } from "../src/config/mapConfig.ts";
 
 test("mantém providers de demonstração quando não há API configurada", () => {
   const config = createServicesConfig({});
@@ -24,4 +25,20 @@ test("ativa o provider REST somente com URL e preserva caminhos customizados", (
 
 test("não ativa REST sem uma URL base", () => {
   assert.equal(createServicesConfig({ VITE_ZUVVI_PROVIDER: "rest" }).provider, "demo");
+});
+
+test("gera estilo raster independente de TileJSON, sprites e fontes externas", () => {
+  const style = createRasterStyle("zuvvi-test", ["https://tiles.example/{z}/{x}/{y}.png"]);
+
+  assert.equal(style["version"], 8);
+  assert.deepEqual(style["layers"], [{ id: "zuvvi-test", type: "raster", source: "zuvvi-test" }]);
+  assert.equal("sprite" in style, false);
+  assert.equal("glyphs" in style, false);
+});
+
+test("usa tiles raster diretos no estilo escuro padrão", () => {
+  const serialized = JSON.stringify(mapStyles.dark.style);
+
+  assert.match(serialized, /basemaps\.cartocdn\.com\/dark_all/);
+  assert.doesNotMatch(serialized, /tiles\.basemaps\.cartocdn\.com/);
 });

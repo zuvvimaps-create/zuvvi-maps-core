@@ -18,17 +18,46 @@ export interface MapStyleDefinition {
   style: string | Record<string, unknown>;
 }
 
-const env = import.meta.env as Record<string, string | undefined>;
+const env = (import.meta.env ?? {}) as Record<string, string | undefined>;
+
+export function createRasterStyle(
+  id: string,
+  tiles: string[],
+  attribution = "© OpenStreetMap contributors © CARTO",
+): Record<string, unknown> {
+  return {
+    version: 8,
+    name: id,
+    sources: {
+      [id]: {
+        type: "raster",
+        tiles,
+        tileSize: 256,
+        attribution,
+      },
+    },
+    layers: [{ id, type: "raster", source: id }],
+  };
+}
 
 const OPEN_STYLES = {
-  /** CARTO Dark Matter — free open style built on OpenStreetMap data. */
+  /**
+   * Use an explicitly configured vector style when available. The raster
+   * defaults avoid the extra CARTO TileJSON host that fails on some mobile
+   * networks while the self-hosted Zuvvi stack is not ready.
+   */
   dark:
     env["VITE_ZUVVI_MAP_STYLE_DARK"] ??
-    "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
-  /** CARTO Voyager — light street cartography. */
+    createRasterStyle("zuvvi-dark", [
+      "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
+      "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
+    ]),
   streets:
     env["VITE_ZUVVI_MAP_STYLE_STREETS"] ??
-    "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+    createRasterStyle("zuvvi-streets", [
+      "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png",
+      "https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png",
+    ]),
 } as const;
 
 /** Raster imagery layer, defined inline so the tile url is swappable. */

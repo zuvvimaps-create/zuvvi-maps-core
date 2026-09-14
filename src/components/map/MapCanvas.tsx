@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { mapConfig, type MapStyleId } from "@/config/mapConfig";
 import { mapService } from "@/services/mapService";
 import type { LatLng, Place, RouteGeometry } from "@/types";
+import { AlertTriangle, RotateCw } from "lucide-react";
 import { DestinationPin, PlacePin, UserLocationPin } from "./MapPin";
 
 interface MapCanvasProps {
@@ -38,6 +39,7 @@ export function MapCanvas({
 }: MapCanvasProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const hosts = useRef(new Map<string, HTMLElement>());
   const [, setHostVersion] = useState(0);
 
@@ -51,17 +53,45 @@ export function MapCanvas({
       .init(container, { styleId, center: userLocation, zoom: mapConfig.defaultZoom })
       .then((map) => {
         if (cancelled) return;
+        let settled = false;
         const markReady = () => {
           if (cancelled) return;
+          setLoadError(null);
+          if (!settled) {
+            settled = true;
+            setReady(true);
+            onReady?.();
+          }
+        };
+        const markUnavailable = () => {
+          if (cancelled || settled) return;
+          settled = true;
+          setLoadError("A cartografia não carregou. Verifique sua conexão e tente novamente.");
+          // Keep app-owned pins and controls usable even when tiles fail.
           setReady(true);
           onReady?.();
         };
-        if (map.loaded()) markReady();
-        else map.once("load", markReady);
-        // Fallback so markers and UI never wait on a slow tile response.
-        map.once("styledata", () => window.setTimeout(markReady, 400));
+        const timeoutId = window.setTimeout(markUnavailable, 12_000);
+        map.on("error", (event) => {
+          console.error("Map resource failed to load", event.error);
+          markUnavailable();
+        });
+        map.once("load", () => {
+          window.clearTimeout(timeoutId);
+          markReady();
+        });
+        if (map.loaded()) {
+          window.clearTimeout(timeoutId);
+          markReady();
+        }
       })
-      .catch((error) => console.error("Map failed to initialise", error));
+      .catch((error) => {
+        console.error("Map failed to initialise", error);
+        if (!cancelled) {
+          setLoadError("Seu aparelho não conseguiu iniciar o mapa.");
+          setReady(true);
+        }
+      });
 
     return () => {
       cancelled = true;
@@ -74,7 +104,7 @@ export function MapCanvas({
   }, []);
 
   useEffect(() => {
-    if (ready) mapService.setStyle(styleId);
+    if (ready && mapService.currentStyleId !== styleId) mapService.setStyle(styleId);
   }, [ready, styleId]);
 
   /* ------------------------------ place markers ----------------------------- */
@@ -180,6 +210,21 @@ export function MapCanvas({
 
       {userHost ? createPortal(<UserLocationPin />, userHost, "user") : null}
       {destinationHost ? createPortal(<DestinationPin />, destinationHost, "dest") : null}
+
+      {loadError ? (
+        <div className="absolute left-4 right-4 top-40 z-20 mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-warning/30 bg-background/95 p-3 shadow-e2 backdrop-blur">
+          <AlertTriangle className="h-5 w-5 shrink-0 text-warning" />
+          <p className="flex-1 text-xs font-medium text-foreground">{loadError}</p>
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="inline-flex items-center gap-1 rounded-xl bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground"
+          >
+            <RotateCw className="h-3.5 w-3.5" />
+            Tentar
+          </button>
+        </div>
+      ) : null}
 
       {!ready ? (
         <div className="absolute inset-0 grid place-items-center bg-background">
