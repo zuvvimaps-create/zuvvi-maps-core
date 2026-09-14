@@ -154,6 +154,21 @@ Status: **FECHADA após o merge autorizado do PR #1 e a contraprova na `main`**
 
 ### ZVM-BASE-01 — Qualidade e CI
 
+Status: **FECHADA após o merge autorizado do PR #2 e a contraprova na `main`**
+
+- Branch: `chore/zvm-base-01-quality-ci`.
+- PR: `#2`.
+- Baseline: 28 erros e 11 avisos de lint.
+- Resultado: lint sem erros e sem avisos.
+- TypeScript: aprovado com `tsc --noEmit`.
+- Testes automatizados: 7 aprovados, cobrindo formatação, cálculos geográficos e seleção de providers.
+- Build de produção: aprovado.
+- Smoke test HTTP local: aprovado com resposta `200`.
+- CI: validação automática de lint, tipos, testes e build em PRs e pushes na `main`.
+- Alteração visual intencional: nenhuma.
+- Banco/Supabase: nenhuma alteração.
+- Pendência conhecida mantida fora desta microetapa: otimização do bundle do MapLibre.
+
 - Corrigir lint em microetapa isolada.
 - Adicionar CI obrigatório para build, TypeScript e lint.
 - Criar testes mínimos do shell, serviços e configurações.

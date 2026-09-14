@@ -39,11 +39,12 @@ export function MapCanvas({
   const containerRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const hosts = useRef(new Map<string, HTMLElement>());
-  const [hostVersion, setHostVersion] = useState(0);
+  const [, setHostVersion] = useState(0);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    const markerHosts = hosts.current;
     let cancelled = false;
 
     mapService
@@ -64,7 +65,7 @@ export function MapCanvas({
 
     return () => {
       cancelled = true;
-      hosts.current.clear();
+      markerHosts.clear();
       mapService.destroy();
       setReady(false);
     };
@@ -162,9 +163,6 @@ export function MapCanvas({
             "radial-gradient(120% 70% at 12% 0%, color-mix(in oklab, var(--color-primary) 16%, transparent), transparent 60%), radial-gradient(110% 60% at 92% 100%, color-mix(in oklab, var(--color-accent-violet) 16%, transparent), transparent 62%)",
         }}
       />
-
-      {/* eslint-disable-next-line @eslint-react/no-unstable-context-value */}
-      <span className="hidden">{hostVersion}</span>
 
       {places.map((place) => {
         const host = hosts.current.get(`place:${place.id}`);

@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  ChevronDown,
-  Clock,
-  MapPin,
-  Navigation,
-  Phone,
-  Share2,
-  Star,
-  X,
-} from "lucide-react";
+import { ChevronDown, Clock, MapPin, Navigation, Phone, Share2, Star, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDistance, formatDuration, formatRating, formatReviewCount } from "@/utils/format";
 import { distanceMeters } from "@/utils/geo";
@@ -169,7 +160,9 @@ export function PlaceSheet({
           className="mt-3 flex w-full items-center justify-center gap-1 border-t border-border py-2.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground"
         >
           {expanded ? "Menos detalhes" : "Mais detalhes"}
-          <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", expanded && "rotate-180")} />
+          <ChevronDown
+            className={cn("h-3.5 w-3.5 transition-transform", expanded && "rotate-180")}
+          />
         </button>
 
         {expanded ? (

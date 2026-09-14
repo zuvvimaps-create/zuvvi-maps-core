@@ -81,8 +81,7 @@ function HomeScreen() {
         .filter((item) => item.id !== place.id)
         .sort(
           (a, b) =>
-            distanceMeters(place.location, a.location) -
-            distanceMeters(place.location, b.location),
+            distanceMeters(place.location, a.location) - distanceMeters(place.location, b.location),
         )
         .slice(0, 4),
     [places],
@@ -313,7 +312,8 @@ function HomeScreen() {
                           {item.label}
                         </p>
                         <p className="truncate text-[11px] text-muted-foreground">
-                          {item.address} · {formatDistance(distanceMeters(userLocation, item.location))}
+                          {item.address} ·{" "}
+                          {formatDistance(distanceMeters(userLocation, item.location))}
                         </p>
                       </button>
                       <button
@@ -398,11 +398,7 @@ function SidePanel({
       <div className="glass mx-auto max-h-[62vh] max-w-md overflow-y-auto rounded-3xl p-4 shadow-e3 animate-slide-in-bottom">
         <div className="flex items-center justify-between pb-3">
           <h2 className="font-display text-lg font-bold text-foreground">{title}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-xs font-semibold text-primary"
-          >
+          <button type="button" onClick={onClose} className="text-xs font-semibold text-primary">
             Fechar
           </button>
         </div>

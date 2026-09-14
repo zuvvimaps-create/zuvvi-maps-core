@@ -4,13 +4,7 @@ import { cn } from "@/lib/utils";
 import { GeocodingService, PlacesService } from "@/services";
 import { formatDistance } from "@/utils/format";
 import { distanceMeters } from "@/utils/geo";
-import type {
-  AutocompleteSuggestion,
-  LatLng,
-  Place,
-  PlaceCategory,
-  RecentSearch,
-} from "@/types";
+import type { AutocompleteSuggestion, LatLng, Place, PlaceCategory, RecentSearch } from "@/types";
 import { categoryIcons } from "./MapPin";
 
 const chips: { id: PlaceCategory; label: string }[] = [
@@ -276,9 +270,7 @@ export function SearchOverlay({
                         <button
                           type="button"
                           aria-label={`Remover ${recent.label}`}
-                          onClick={() =>
-                            setRecents(GeocodingService.removeRecentSearch(recent.id))
-                          }
+                          onClick={() => setRecents(GeocodingService.removeRecentSearch(recent.id))}
                           className="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground transition-colors hover:text-destructive"
                         >
                           <Trash2 className="h-4 w-4" />

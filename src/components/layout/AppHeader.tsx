@@ -54,9 +54,7 @@ export function AppHeader({ onOpenSearch, onOpenProfile, onOpenSettings }: AppHe
             <Search className="h-4 w-4" strokeWidth={2.6} />
           </span>
           <span className="flex flex-col">
-            <span className="text-[15px] font-semibold text-foreground">
-              Para onde você vai?
-            </span>
+            <span className="text-[15px] font-semibold text-foreground">Para onde você vai?</span>
             <span className="text-[11px] text-muted-foreground">
               Busque locais, endereços ou categorias
             </span>

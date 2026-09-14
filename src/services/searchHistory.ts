@@ -34,9 +34,7 @@ export const searchHistory = {
       id: `rs-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       searchedAt: Date.now(),
     };
-    const deduped = read().filter(
-      (item) => item.label.toLowerCase() !== entry.label.toLowerCase(),
-    );
+    const deduped = read().filter((item) => item.label.toLowerCase() !== entry.label.toLowerCase());
     return write([next, ...deduped].slice(0, MAX));
   },
   remove(id: string): RecentSearch[] {

@@ -40,12 +40,7 @@ export interface Driver {
 }
 
 export type TripStatus =
-  | "requested"
-  | "accepted"
-  | "going_to_pickup"
-  | "in_progress"
-  | "completed"
-  | "cancelled";
+  "requested" | "accepted" | "going_to_pickup" | "in_progress" | "completed" | "cancelled";
 
 export interface TripEndpoint {
   label: string;
