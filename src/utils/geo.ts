@@ -30,11 +30,12 @@ export function interpolate(a: LatLng, b: LatLng, t: number): LatLng {
 }
 
 export function boundsOf(points: LatLng[]): [[number, number], [number, number]] | null {
-  if (points.length === 0) return null;
-  let minLng = points[0].lng;
-  let maxLng = points[0].lng;
-  let minLat = points[0].lat;
-  let maxLat = points[0].lat;
+  const first = points[0];
+  if (!first) return null;
+  let minLng = first.lng;
+  let maxLng = first.lng;
+  let minLat = first.lat;
+  let maxLat = first.lat;
   for (const p of points) {
     minLng = Math.min(minLng, p.lng);
     maxLng = Math.max(maxLng, p.lng);
