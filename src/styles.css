@@ -291,3 +291,32 @@
 .maplibregl-canvas:focus {
   outline: none;
 }
+
+/* Entrance motion for sheets and overlays */
+@utility animate-slide-in-bottom {
+  animation: zuvvi-slide-in-bottom 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes zuvvi-slide-in-bottom {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@utility animate-fade-in {
+  animation: zuvvi-fade-in 220ms ease-out;
+}
+
+@keyframes zuvvi-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
