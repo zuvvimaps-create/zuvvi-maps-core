@@ -29,22 +29,22 @@ export interface Place {
   location: LatLng;
   rating: number;
   reviewCount: number;
-  priceLevel?: 1 | 2 | 3 | 4;
+  priceLevel?: 1 | 2 | 3 | 4 | undefined;
   openNow: boolean;
   hours: string;
-  weeklyHours?: string[];
-  phone?: string;
+  weeklyHours?: string[] | undefined;
+  phone?: string | undefined;
   tags: string[];
   photos: string[];
   description: string;
 }
 
 export interface PlaceSearchQuery {
-  text?: string;
-  categories?: PlaceCategory[];
-  near?: LatLng;
-  radiusKm?: number;
-  limit?: number;
+  text?: string | undefined;
+  categories?: PlaceCategory[] | undefined;
+  near?: LatLng | undefined;
+  radiusKm?: number | undefined;
+  limit?: number | undefined;
 }
 
 export interface CategoryMeta {
@@ -73,24 +73,24 @@ export interface AutocompleteSuggestion {
   primaryText: string;
   secondaryText: string;
   location: LatLng;
-  placeId?: string;
-  category?: PlaceCategory;
+  placeId?: string | undefined;
+  category?: PlaceCategory | undefined;
 }
 
 export interface RecentSearch {
   id: string;
   label: string;
-  secondary?: string;
-  location?: LatLng;
-  placeId?: string;
+  secondary?: string | undefined;
+  location?: LatLng | undefined;
+  placeId?: string | undefined;
   searchedAt: number;
 }
 
 export interface Viewport {
   center: LatLng;
   zoom: number;
-  bearing?: number;
-  pitch?: number;
+  bearing?: number | undefined;
+  pitch?: number | undefined;
 }
 
 /* ---------------------------------- routing --------------------------------- */
@@ -135,5 +135,5 @@ export interface RoutePlan {
 export interface RouteRequest {
   origin: LatLng;
   destination: LatLng;
-  profiles?: RouteProfile[];
+  profiles?: RouteProfile[] | undefined;
 }

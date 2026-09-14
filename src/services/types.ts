@@ -85,6 +85,6 @@ export type { VehicleCategoryId };
 export interface ZuvviServiceProviderInfo {
   name: string;
   kind: "demo" | "rest";
-  endpoint?: string;
+  endpoint?: string | undefined;
   simulated: boolean;
 }

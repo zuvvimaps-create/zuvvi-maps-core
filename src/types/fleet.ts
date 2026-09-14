@@ -82,10 +82,10 @@ export interface Trip {
   routeGeometry: RouteGeometry | null;
   timestamps: {
     requestedAt: string;
-    acceptedAt?: string;
-    startedAt?: string;
-    completedAt?: string;
-    cancelledAt?: string;
+    acceptedAt?: string | undefined;
+    startedAt?: string | undefined;
+    completedAt?: string | undefined;
+    cancelledAt?: string | undefined;
   };
 }
 
@@ -112,7 +112,7 @@ export interface SavedPlace {
   kind: "home" | "work" | "custom";
   address: string;
   location: LatLng;
-  placeId?: string;
+  placeId?: string | undefined;
 }
 
 export interface PlatformUser {
