@@ -2,12 +2,7 @@ import { servicesConfig } from "@/services/config";
 import { searchHistory } from "@/services/searchHistory";
 import type { IGeocodingService } from "@/services/types";
 import { distanceMeters } from "@/utils/geo";
-import type {
-  AutocompleteSuggestion,
-  GeocodeResult,
-  LatLng,
-  RecentSearch,
-} from "@/types";
+import type { AutocompleteSuggestion, GeocodeResult, LatLng, RecentSearch } from "@/types";
 import { demoPlaces, demoStreetNames } from "./demoData";
 
 const delay = (ms = servicesConfig.demoLatencyMs) =>
@@ -64,9 +59,7 @@ export class DemoGeocodingProvider implements IGeocodingService {
     const all = [...placeMatches, ...streetMatches];
     if (near) {
       const origin = near;
-      all.sort(
-        (a, b) => distanceMeters(origin, a.location) - distanceMeters(origin, b.location),
-      );
+      all.sort((a, b) => distanceMeters(origin, a.location) - distanceMeters(origin, b.location));
     }
     return all.slice(0, 8);
   }
@@ -77,7 +70,8 @@ export class DemoGeocodingProvider implements IGeocodingService {
       .map((place) => ({ place, d: distanceMeters(location, place.location) }))
       .sort((a, b) => a.d - b.d)[0];
     if (!nearest) return null;
-    const street = demoStreetNames[Math.floor(Math.abs(location.lng * 1000)) % demoStreetNames.length];
+    const street =
+      demoStreetNames[Math.floor(Math.abs(location.lng * 1000)) % demoStreetNames.length];
     return {
       id: `rev-${location.lat.toFixed(4)}-${location.lng.toFixed(4)}`,
       formattedAddress:

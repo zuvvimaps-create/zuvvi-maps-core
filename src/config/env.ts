@@ -16,8 +16,7 @@ const raw = import.meta.env as Record<string, string | undefined>;
 
 export const env = {
   mapStyleUrl:
-    raw["VITE_MAP_STYLE_URL"] ??
-    "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+    raw["VITE_MAP_STYLE_URL"] ?? "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
   tileServerUrl: raw["VITE_TILE_SERVER_URL"] ?? "",
   routingApiUrl: raw["VITE_ROUTING_API_URL"] ?? "",
   geocodingApiUrl: raw["VITE_GEOCODING_API_URL"] ?? "",

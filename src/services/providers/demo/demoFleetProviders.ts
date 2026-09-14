@@ -13,12 +13,7 @@ import type {
   VehicleCategory,
   Venue,
 } from "@/types";
-import {
-  demoDrivers,
-  demoPlatformUsers,
-  demoVenues,
-  vehicleCategories,
-} from "./demoData";
+import { demoDrivers, demoPlatformUsers, demoVenues, vehicleCategories } from "./demoData";
 
 const delay = (ms = 200) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -67,8 +62,7 @@ export class DemoDriverProvider implements IDriverService {
       .filter((driver) => driver.status !== "offline")
       .sort(
         (a, b) =>
-          distanceMeters(location, a.currentLocation) -
-          distanceMeters(location, b.currentLocation),
+          distanceMeters(location, a.currentLocation) - distanceMeters(location, b.currentLocation),
       )
       .slice(0, limit);
   }
@@ -108,7 +102,8 @@ export class DemoTripProvider implements ITripService {
 
   async request(input: TripRequestInput): Promise<Trip> {
     await delay(320);
-    const category = vehicleCategories.find((c) => c.id === input.category) ?? vehicleCategories[0]!;
+    const category =
+      vehicleCategories.find((c) => c.id === input.category) ?? vehicleCategories[0]!;
     const base = BASE_FARE + input.distanceKm * PER_KM + input.durationMin * PER_MIN;
     const trip: Trip = {
       tripId: `trp-${Date.now().toString().slice(-6)}`,
@@ -369,16 +364,13 @@ export class DemoAdminProvider implements IAdminService {
     const onTrip = state.drivers.filter((d) => d.status === "on_trip").length;
     const all = [...state.trips, ...seedTrips];
     const completed = all.filter((t) => t.status === "completed");
-    const ongoing = all.filter(
-      (t) => t.status !== "completed" && t.status !== "cancelled",
-    );
+    const ongoing = all.filter((t) => t.status !== "completed" && t.status !== "cancelled");
     return {
       activeDrivers: online + onTrip,
       onlineDrivers: online,
       ongoingTrips: ongoing.length,
       completedTrips: completed.length + 1_284,
-      revenue:
-        Math.round((completed.reduce((sum, t) => sum + t.fare, 0) + 18_942.6) * 100) / 100,
+      revenue: Math.round((completed.reduce((sum, t) => sum + t.fare, 0) + 18_942.6) * 100) / 100,
       currency: "EUR",
       systemStatus: "operational",
       averageRating:

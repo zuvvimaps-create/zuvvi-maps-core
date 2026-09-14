@@ -46,9 +46,7 @@ const satelliteStyle: Record<string, unknown> = {
       attribution: "Imagery tiles",
     },
   },
-  layers: [
-    { id: "zuvvi-imagery", type: "raster", source: "zuvvi-imagery" },
-  ],
+  layers: [{ id: "zuvvi-imagery", type: "raster", source: "zuvvi-imagery" }],
 };
 
 export const mapStyles: Record<MapStyleId, MapStyleDefinition> = {

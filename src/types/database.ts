@@ -78,13 +78,7 @@ export interface DbTrip {
   fare: number;
   currency: string;
   vehicle_category: "go" | "comfort" | "black";
-  status:
-    | "requested"
-    | "accepted"
-    | "going_to_pickup"
-    | "in_progress"
-    | "completed"
-    | "cancelled";
+  status: "requested" | "accepted" | "going_to_pickup" | "in_progress" | "completed" | "cancelled";
   route_geom: GeoJsonLineString | null;
   requested_at: string;
   accepted_at: string | null;

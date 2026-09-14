@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  ArrowUp,
-  CornerDownLeft,
-  CornerDownRight,
-  Flag,
-  RotateCw,
-  X,
-} from "lucide-react";
+import { ArrowUp, CornerDownLeft, CornerDownRight, Flag, RotateCw, X } from "lucide-react";
 import { formatDistance, formatDuration, formatEta } from "@/utils/format";
 import type { ManeuverType, RoutePlan } from "@/types";
 

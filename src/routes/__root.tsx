@@ -94,8 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Zuvvi Maps — Mapas, rotas e navegação premium" },
       {
         property: "og:description",
-        content:
-          "Explore lugares, planeje rotas e navegue com o mapa premium da Zuvvi.",
+        content: "Explore lugares, planeje rotas e navegue com o mapa premium da Zuvvi.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

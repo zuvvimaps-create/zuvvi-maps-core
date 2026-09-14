@@ -68,16 +68,11 @@ export const demoPlaces: Place[] = [
     priceLevel: 3,
     openNow: true,
     hours: "Aberto até 23:30",
-    weeklyHours: [
-      "Seg – Qui · 12:00 – 23:30",
-      "Sex – Sáb · 12:00 – 01:00",
-      "Dom · 12:00 – 22:00",
-    ],
+    weeklyHours: ["Seg – Qui · 12:00 – 23:30", "Sex – Sáb · 12:00 – 01:00", "Dom · 12:00 – 22:00"],
     phone: "+351 210 993 214",
     tags: ["Jantar", "Vinhos", "Terraço"],
     photos: [foodPhoto, cafePhoto],
-    description:
-      "Menu degustação sazonal em um salão de mármore escuro com vista para o Tejo.",
+    description: "Menu degustação sazonal em um salão de mármore escuro com vista para o Tejo.",
   },
   {
     id: "zv-emporio-central",

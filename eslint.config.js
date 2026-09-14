@@ -32,8 +32,21 @@ export default tseslint.config(
           ],
         },
       ],
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "react-refresh/only-export-components": ["error", { allowConstantExport: true }],
       "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
+  {
+    // These established modules intentionally co-locate components with their
+    // variants, contexts or hooks. Keep the rule active everywhere else.
+    files: [
+      "src/components/ui/**/*.tsx",
+      "src/components/map/MapPin.tsx",
+      "src/hooks/use-role.tsx",
+      "src/theme/ThemeProvider.tsx",
+    ],
+    rules: {
+      "react-refresh/only-export-components": "off",
     },
   },
   eslintPluginPrettier,

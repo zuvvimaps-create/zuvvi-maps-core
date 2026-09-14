@@ -29,9 +29,7 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
               aria-current={isActive ? "page" : undefined}
               className="relative flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-1.5 transition-colors"
             >
-              {isActive ? (
-                <span className="absolute inset-0 rounded-xl bg-primary/15" />
-              ) : null}
+              {isActive ? <span className="absolute inset-0 rounded-xl bg-primary/15" /> : null}
               <tab.icon
                 className={cn(
                   "relative h-[18px] w-[18px] transition-colors",
