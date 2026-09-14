@@ -50,11 +50,13 @@ export function MapCanvas({
       .init(container, { styleId, center: userLocation, zoom: mapConfig.defaultZoom })
       .then((map) => {
         if (cancelled) return;
-        map.on("load", () => {
+        const markReady = () => {
           if (cancelled) return;
           setReady(true);
           onReady?.();
-        });
+        };
+        if (map.loaded()) markReady();
+        else map.once("load", markReady);
       })
       .catch((error) => console.error("Map failed to initialise", error));
 
