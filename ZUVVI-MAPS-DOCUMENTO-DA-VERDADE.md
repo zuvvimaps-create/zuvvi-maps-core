@@ -168,11 +168,24 @@ Status: **FECHADA após o merge autorizado do PR #2 e a contraprova na `main`**
 - Alteração visual intencional: nenhuma.
 - Banco/Supabase: nenhuma alteração.
 - Pendência conhecida mantida fora desta microetapa: otimização do bundle do MapLibre.
+- Contraprova visual pós-merge no Android: **REPROVADA**. A interface, os 11 lugares e a busca carregaram, mas a cartografia e os pins permaneceram invisíveis sobre uma área preta.
 
 - Corrigir lint em microetapa isolada.
 - Adicionar CI obrigatório para build, TypeScript e lint.
 - Criar testes mínimos do shell, serviços e configurações.
 - Não modificar experiência visual durante a limpeza.
+
+### ZVM-MAP-FIX-01 — Cartografia móvel
+
+Status: **EM EXECUÇÃO**
+
+- Branch: `fix/zvm-map-fix-01-mobile-cartography`.
+- Evidência: quatro capturas fornecidas pelo proprietário após o PR #2.
+- Diagnóstico reproduzido: o estilo JSON da CARTO respondeu, mas seu endpoint de TileJSON vetorial expirou; somente o fundo preto foi renderizado.
+- Substituir o padrão temporário por tiles raster diretos, sem dependência de TileJSON, sprites ou fontes externas.
+- Preservar a configuração para a futura infraestrutura cartográfica própria.
+- Exibir mensagem e ação de nova tentativa quando a cartografia não carregar.
+- Confirmar ruas, pins, busca e movimentação do mapa em novo teste no Android.
 
 ### ZVM-AUTH-01 — Fundação de Auth
 
